@@ -1,0 +1,39 @@
+# Gradle files
+.gradle
+.gradle/
+build/
+*.apk
+*.aar
+
+# Local configuration file
+local.properties
+
+# IDE specific files
+.idea
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Android Studio specific files
+.DS_Store
+*.jks
+*.keystore
+
+# Generated files
+bin/
+gen/
+captures/
+.externalNativeBuild
+
+# Kotlin
+*.kt.bak
+kotlin-stdlib
+
+# Generated Resource IDs
+R.java
+
+# Project specific
+app/release/
+app/debug/
