@@ -1,13 +1,13 @@
 package com.example.textoapp
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
 
     private lateinit var editText: EditText
     private lateinit var textView: TextView
@@ -17,49 +17,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Inicializar vistas
         editText = findViewById(R.id.editText)
         textView = findViewById(R.id.textView)
         button = findViewById(R.id.button)
 
-        // Configurar el clic del botón
         button.setOnClickListener {
-            handleButtonClick()
-        }
-    }
-
-    private fun handleButtonClick() {
-        val texto = editText.text.toString()
-
-        if (texto.isNotEmpty()) {
-            // Pasar el texto del EditText al TextView
-            textView.text = texto
-
-            // Mostrar alerta de éxito
-            showSuccessAlert()
-        } else {
-            // Mostrar alerta de error si el campo está vacío
-            showErrorAlert()
-        }
-    }
-
-    private fun showSuccessAlert() {
-        AlertDialog.Builder(this)
-            .setTitle("Éxito")
-            .setMessage("El texto se ha procesado correctamente: ${editText.text}")
-            .setPositiveButton("OK") { dialog, _ ->
-                dialog.dismiss()
+            val texto = editText.text.toString()
+            if (texto.isNotEmpty()) {
+                textView.text = texto
+                AlertDialog.Builder(this)
+                    .setTitle("Éxito")
+                    .setMessage("El texto se procesó correctamente.")
+                    .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                    .show()
+            } else {
+                AlertDialog.Builder(this)
+                    .setTitle("Aviso")
+                    .setMessage("Ingresa un texto antes de continuar.")
+                    .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                    .show()
             }
-            .show()
-    }
-
-    private fun showErrorAlert() {
-        AlertDialog.Builder(this)
-            .setTitle("Error")
-            .setMessage("Por favor ingresa un texto antes de presionar el botón")
-            .setPositiveButton("OK") { dialog, _ ->
-                dialog.dismiss()
-            }
-            .show()
+        }
     }
 }
