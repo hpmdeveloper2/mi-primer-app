@@ -27,12 +27,13 @@ class MainActivity : Activity() {
             button.startAnimation(animation)
             
             val texto = editText.text.toString()
+            val slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up)
+            
             if (texto.isNotEmpty()) {
                 textView.text = texto
                 val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
                 textView.startAnimation(fadeIn)
                 
-                val slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up)
                 AlertDialog.Builder(this)
                     .setTitle("Éxito")
                     .setMessage("El texto se procesó correctamente.")
